@@ -115,9 +115,9 @@ async def show_back():
 
 # ---- endgame rendering ----
 def render_step():
-    # step 1 は「画像一覧」を表示、2以降は sum_body に出す（画像は消す）
-    clear_node(sum_title)
-    clear_node(sum_body)
+    # step 1 は「画像一覧」を表示、2以降は sum_body に出す（画像は「残す」に変更）
+    # clear_node(sum_title)
+    # clear_node(sum_body)
 
     if step == 1:
         # 画像を表示
