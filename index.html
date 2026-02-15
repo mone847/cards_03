@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+  <title>正の数と負の数カードゲーム</title>
+
+  <link rel="stylesheet" href="https://pyscript.net/releases/2026.2.1/core.css">
+  <script type="module" src="https://pyscript.net/releases/2026.2.1/core.js"></script>
+
+  <script defer src="cards.js"></script>
+
+  <style>
+    body { font-family: sans-serif; text-align: center; margin: 0; padding: 16px; }
+    #board { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-items: start; margin-top: 12px; }
+    .panel { border: 1px solid #ddd; border-radius: 10px; padding: 10px; }
+    .name { font-weight: 700; margin-bottom: 6px; }
+    .cardbox { display:flex; justify-content:center; }
+    .cardbox img { width: 160px; height: auto; visibility: hidden; }
+    .cardbox img.ready { visibility: visible; }
+
+    button { font-size: 18px; padding: 10px 16px; margin: 6px; }
+    #status { margin-top: 10px; font-size: 16px; white-space: pre-line; }
+
+    #summary { margin-top: 14px; text-align: left; max-width: 900px; margin-left:auto; margin-right:auto; display:none; }
+    .rowtitle { font-weight: 700; margin: 10px 0 6px; }
+    .grid { display:flex; flex-wrap:wrap; gap:6px; }
+    .grid img { width: 46px; height:auto; border-radius: 4px; }
+
+    .tokens { display:flex; flex-wrap:wrap; gap:10px; line-height: 1.8; }
+    .black { color:#111; font-weight:700; }
+    .red { color:#c00; font-weight:700; }
+
+    #nav { display:none; margin-top: 10px; }
+  </style>
+</head>
+
+<body>
+  <h1>正の数と負の数カードゲーム</h1>
+
+  <div id="board">
+    <div class="panel">
+      <div class="name">あなた</div>
+      <div class="cardbox">
+        <img id="p-card" src="https://mone847.github.io/cards_assets/cards_img/c0.svg" alt="player">
+      </div>
+      <div id="p-mini" style="margin-top:6px;"></div>
+    </div>
+
+    <div class="panel">
+      <div class="name">コンピュータ</div>
+      <div class="cardbox">
+        <img id="c-card" src="https://mone847.github.io/cards_assets/cards_img/c0.svg" alt="computer">
+      </div>
+      <div id="c-mini" style="margin-top:6px;"></div>
+    </div>
+  </div>
+
+  <div style="margin-top:10px;">
+    <button id="draw-btn" py-click="draw_once">カードを引く（1回）</button>
+    <button id="reset-btn" py-click="reset_game">リセット</button>
+  </div>
+
+  <div id="nav">
+    <button id="step-btn" py-click="next_step">文字化</button>
+    <button id="back-btn" py-click="prev_step">戻る</button>
+  </div>
+
+  <div id="status"></div>
+
+  <div id="summary">
+    <div class="rowtitle">① 画像（あなたがとったカード）</div>
+    <div id="sum-img-p" class="grid"></div>
+
+    <div class="rowtitle">① 画像（コンピュータがとったカード）</div>
+    <div id="sum-img-c" class="grid"></div>
+
+    <div class="rowtitle" id="sum-title"></div>
+    <div id="sum-body"></div>
+  </div>
+
+  <script type="py" src="main.py"></script>
+</body>
+</html>
