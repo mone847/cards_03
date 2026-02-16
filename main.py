@@ -334,7 +334,10 @@ async def draw_once_async():
         # 途中経過（合計点だけ表示）
         p_plus, p_minus, p_total = compute_plus_minus(taken_p)
         c_plus, c_minus, c_total = compute_plus_minus(taken_c)
-        extra = f"{msg}\n（途中経過）あなた 合計 {p_total} / コンピュータ 合計 {c_total}"
+        if round_no == 1:
+            extra = f"{msg}\n（途中経過）あなた 合計 {p_total} / コンピュータ 合計 {c_total}"
+        else:
+            extra = f"{msg}\n（途中経過）あなた 合計 ??? / コンピュータ 合計 ???"
         update_status(extra)
 
         if round_no >= rounds_total:
@@ -368,4 +371,5 @@ def prev_step(event=None):
 
 
 # ===== Init =====
+
 asyncio.create_task(reset_async())
